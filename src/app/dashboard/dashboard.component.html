@@ -1,0 +1,44 @@
+<div class="container">
+
+<div class="section">
+  <h2>Items</h2>
+  <div class="table-responsive">
+    <table class="table">
+      <tr>
+        <th>ID</th><th>Emperor</th><th>Birth Year</th><th></th><th></th>
+      </tr>
+      <tr *ngFor="let item of items">
+        <td>{{item.id}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.year}}</td>
+        <td><button (click)="onSelectEdit(item)">Edit</button></td>
+        <td><button (click)="onDelete(item)">Delete</button></td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<div *ngIf="selectedItem" class="section">
+  <h2>Editing item</h2>
+  <label>{{selectedItem.id}}
+    <input #editItemName [value]="selectedItem.name">
+    <input #editItemYear [value]="selectedItem.year">
+  </label>
+  <button type="submit" (click)="onEdit( $event, selectedItem.id, editItemName.value,editItemYear.value )">Edit</button>
+</div>
+
+
+<div class="section">
+  <h2>Add item</h2>
+  <form>
+    <input #addItemID type="text" placeholder="ID">
+    <input #addItemName type="text" placeholder="Value">
+    <input #addItemYear type="text" placeholder="Value">
+    <button type="submit" (click)="onAdd( $event, addItemID.value, addItemName.value, addItemYear.value)">Add</button>
+  </form>
+</div>
+
+
+
+
+</div>
